@@ -1,1 +1,115 @@
 @import "tailwindcss";
+
+:root {
+  /* Backgrounds - Cool Pearl White */
+  --background: #F4F5F7;
+  --foreground: #111820;
+
+  /* Cards - Pure White with high contrast text */
+  --card: #FFFFFF;
+  --card-foreground: #111820;
+
+  /* Primary - "Blurple" (Vibrant Blue/Purple) - Extremely modern */
+  --primary: #5438FF;
+  --primary-foreground: #FFFFFF;
+
+  /* Secondary - Soft grayish blue for hover states/secondary buttons */
+  --secondary: #E8EAF6;
+  --secondary-foreground: #2A313C;
+
+  /* Muted - For borders and subtle backgrounds */
+  --muted: #F0F2F5;
+  --muted-foreground: #6B7280;
+
+  /* Borders - Very light and crisp */
+  --border: #E5E7EB;
+
+  /* Custom Fintech Status Colors */
+  --success: #00D395; /* Vibrant Mint Green for money/income */
+  --warning: #FFB300; /* Golden Amber */
+  --danger: #FF4D4D;  /* Coral Red for expenses/debt */
+
+  --radius: 0.85rem; /* Slightly more rounded for a modern app feel */
+}
+
+.dark {
+  /* Deep Space Gray - Much richer than standard black */
+  --background: #0D1117;
+  --foreground: #F8FAFC;
+
+  /* Slightly lighter gray for cards to create depth */
+  --card: #161C24;
+  --card-foreground: #F8FAFC;
+
+  /* Brightened primary for neon-like dark mode pop */
+  --primary: #6B52FF;
+  --primary-foreground: #FFFFFF;
+
+  --secondary: #222A35;
+  --secondary-foreground: #E2E8F0;
+
+  --muted: #1A212B;
+  --muted-foreground: #8B949E;
+
+  --border: #2D3748;
+
+  /* Glowing status colors for dark mode */
+  --success: #00E6A4; 
+  --warning: #FFC033;
+  --danger: #FF6666;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-border: var(--border);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--foreground);
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
