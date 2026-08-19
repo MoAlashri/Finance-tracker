@@ -1,112 +1,184 @@
 import { useState } from "react";
+import { toast } from "sonner";
 import {
-  CheckCircle2,
+  Check,
   CircleDollarSign,
   CreditCard,
+  Moon,
+  Sun,
   Wallet,
 } from "lucide-react";
-import { toast } from "sonner";
+
+import { useAppDispatch, useAppSelector } from "./store/hooks";
+import { setTheme } from "./store/slices/themeSlice";
 
 import Button from "./components/ui/Button";
 import Card from "./components/ui/Card";
 import Badge from "./components/ui/Badge";
 import Input from "./components/ui/Input";
-import Dialog from "./components/ui/Dialog";
 import Select from "./components/ui/Select";
 import Progress from "./components/ui/Progress";
+import Dialog from "./components/ui/Dialog";
 import Skeleton from "./components/ui/Skeleton";
 import EmptyState from "./components/ui/EmptyState";
 import Table from "./components/ui/Table";
 
+import useTheme from "./hooks/useTheme";
+
 function App() {
+  useTheme();
+
+  const dispatch = useAppDispatch();
+
+  const theme = useAppSelector(
+    (state) => state.theme.theme
+  );
+
   const [dialogOpen, setDialogOpen] = useState(false);
 
   return (
     <main className="min-h-screen bg-background p-6 text-foreground md:p-10">
       <div className="mx-auto max-w-7xl space-y-10">
 
-        {/* Header */}
-        <section>
-          <Badge variant="success">
-            Component Test Lab
-          </Badge>
+        {/* HEADER */}
 
-          <h1 className="mt-3 text-4xl font-bold tracking-tight">
+        <section>
+          <div className="flex flex-wrap items-center gap-3">
+            <Badge variant="success">
+              Test Lab
+            </Badge>
+
+            <Badge>
+              Redux Toolkit
+            </Badge>
+
+            <Badge variant="warning">
+              Theme: {theme}
+            </Badge>
+          </div>
+
+          <h1 className="mt-4 text-4xl font-bold">
             FinTracker UI System
           </h1>
 
           <p className="mt-2 text-muted-foreground">
-            Testing every reusable component before moving
-            to the next phase.
+            Complete component, Redux and theme testing.
           </p>
         </section>
 
-        {/* ========================================= */}
-        {/* BUTTON */}
-        {/* ========================================= */}
+        {/* ================================= */}
+        {/* THEME */}
+        {/* ================================= */}
 
         <Card className="p-6">
-          <SectionTitle
-            title="Button"
-            description="Variants, sizes and disabled state."
+          <TestTitle
+            title="Theme System"
+            description="Redux + Listener Middleware + localStorage + System Theme"
           />
 
-          <div className="mt-6 space-y-6">
+          <div className="mt-6 flex flex-wrap gap-3">
 
-            <div className="flex flex-wrap gap-3">
-              <Button variant="primary">
-                Primary
-              </Button>
+            <Button
+              variant="primary"
+              onClick={() =>
+                dispatch(setTheme("light"))
+              }
+            >
+              <Sun size={16} />
+              Light
+            </Button>
 
-              <Button variant="secondary">
-                Secondary
-              </Button>
+            <Button
+              variant="secondary"
+              onClick={() =>
+                dispatch(setTheme("dark"))
+              }
+            >
+              <Moon size={16} />
+              Dark
+            </Button>
 
-              <Button variant="outline">
-                Outline
-              </Button>
+            <Button
+              variant="outline"
+              onClick={() =>
+                dispatch(setTheme("system"))
+              }
+            >
+              System
+            </Button>
 
-              <Button variant="ghost">
-                Ghost
-              </Button>
+          </div>
 
-              <Button variant="danger">
-                Danger
-              </Button>
-            </div>
+          <div className="mt-6 rounded-lg bg-muted p-4">
+            <p className="text-sm text-muted-foreground">
+              Current Redux Theme
+            </p>
 
-            <div className="flex flex-wrap items-center gap-3">
-              <Button size="sm">
-                Small
-              </Button>
+            <p className="mt-1 text-lg font-semibold">
+              {theme}
+            </p>
+          </div>
+        </Card>
 
-              <Button size="md">
-                Medium
-              </Button>
+        {/* ================================= */}
+        {/* BUTTON */}
+        {/* ================================= */}
 
-              <Button size="lg">
-                Large
-              </Button>
+        <Card className="p-6">
+          <TestTitle
+            title="Button"
+            description="Variants, sizes and states"
+          />
 
-              <Button disabled>
-                Disabled
-              </Button>
-            </div>
+          <div className="mt-6 flex flex-wrap gap-3">
+
+            <Button variant="primary">
+              Primary
+            </Button>
+
+            <Button variant="secondary">
+              Secondary
+            </Button>
+
+            <Button variant="outline">
+              Outline
+            </Button>
+
+            <Button variant="ghost">
+              Ghost
+            </Button>
+
+            <Button variant="danger">
+              Danger
+            </Button>
+
+            <Button size="sm">
+              Small
+            </Button>
+
+            <Button size="lg">
+              Large
+            </Button>
+
+            <Button disabled>
+              Disabled
+            </Button>
 
           </div>
         </Card>
 
-        {/* ========================================= */}
+        {/* ================================= */}
         {/* BADGE */}
-        {/* ========================================= */}
+        {/* ================================= */}
 
         <Card className="p-6">
-          <SectionTitle
+          <TestTitle
             title="Badge"
-            description="Financial status indicators."
+            description="Status indicators"
           />
 
           <div className="mt-6 flex flex-wrap gap-3">
+
             <Badge>
               Default
             </Badge>
@@ -122,24 +194,23 @@ function App() {
             <Badge variant="danger">
               Expense
             </Badge>
+
           </div>
         </Card>
 
-        {/* ========================================= */}
+        {/* ================================= */}
         {/* INPUT */}
-        {/* ========================================= */}
+        {/* ================================= */}
 
         <Card className="p-6">
-          <SectionTitle
+          <TestTitle
             title="Input"
-            description="Text, number, disabled and placeholder states."
+            description="Different input states"
           />
 
           <div className="mt-6 grid gap-4 md:grid-cols-2">
 
-            <Input
-              placeholder="Transaction name"
-            />
+            <Input placeholder="Transaction name" />
 
             <Input
               type="number"
@@ -148,25 +219,25 @@ function App() {
 
             <Input
               type="email"
-              placeholder="Email address"
+              placeholder="Email"
             />
 
             <Input
               disabled
-              placeholder="Disabled input"
+              placeholder="Disabled"
             />
 
           </div>
         </Card>
 
-        {/* ========================================= */}
+        {/* ================================= */}
         {/* SELECT */}
-        {/* ========================================= */}
+        {/* ================================= */}
 
         <Card className="p-6">
-          <SectionTitle
+          <TestTitle
             title="Select"
-            description="Reusable native select."
+            description="Categories and currencies"
           />
 
           <div className="mt-6 grid gap-4 md:grid-cols-2">
@@ -180,16 +251,12 @@ function App() {
                 Food
               </option>
 
-              <option value="transportation">
-                Transportation
+              <option value="travel">
+                Travel
               </option>
 
               <option value="shopping">
                 Shopping
-              </option>
-
-              <option value="entertainment">
-                Entertainment
               </option>
             </Select>
 
@@ -210,69 +277,72 @@ function App() {
           </div>
         </Card>
 
-        {/* ========================================= */}
+        {/* ================================= */}
         {/* PROGRESS */}
-        {/* ========================================= */}
+        {/* ================================= */}
 
         <Card className="p-6">
-          <SectionTitle
+          <TestTitle
             title="Progress"
-            description="Goal and budget progress states."
+            description="Goal progress boundaries"
           />
 
           <div className="mt-6 space-y-6">
 
-            <ProgressExample
+            <ProgressTest
               label="Germany Trip"
               value={72}
             />
 
-            <ProgressExample
+            <ProgressTest
               label="Emergency Fund"
               value={45}
             />
 
-            <ProgressExample
-              label="Monthly Budget"
+            <ProgressTest
+              label="Budget"
               value={91}
             />
 
-            <ProgressExample
-              label="Over 100% test"
+            <ProgressTest
+              label="Over 100%"
               value={150}
             />
 
-            <ProgressExample
-              label="Negative value test"
+            <ProgressTest
+              label="Negative"
               value={-20}
             />
 
           </div>
         </Card>
 
-        {/* ========================================= */}
+        {/* ================================= */}
         {/* DIALOG */}
-        {/* ========================================= */}
+        {/* ================================= */}
 
         <Card className="p-6">
-          <SectionTitle
+          <TestTitle
             title="Dialog"
-            description="Controlled component and interaction testing."
+            description="Open, close, Escape and backdrop"
           />
 
-          <div className="mt-6">
-            <Button
-              onClick={() => setDialogOpen(true)}
-            >
-              Open Transaction Dialog
-            </Button>
-          </div>
+          <Button
+            className="mt-6"
+            onClick={() =>
+              setDialogOpen(true)
+            }
+          >
+            Open Dialog
+          </Button>
 
           <Dialog
             open={dialogOpen}
-            onClose={() => setDialogOpen(false)}
+            onClose={() =>
+              setDialogOpen(false)
+            }
             title="Add Transaction"
-            description="Test the reusable Dialog component."
+            description="Testing FinTracker transaction modal."
           >
             <div className="space-y-4">
 
@@ -287,7 +357,7 @@ function App() {
 
               <Select defaultValue="">
                 <option value="" disabled>
-                  Select type
+                  Transaction type
                 </option>
 
                 <option value="income">
@@ -300,6 +370,7 @@ function App() {
               </Select>
 
               <div className="flex justify-end gap-3">
+
                 <Button
                   variant="outline"
                   onClick={() =>
@@ -318,25 +389,27 @@ function App() {
                     );
                   }}
                 >
-                  Save Transaction
+                  <Check size={16} />
+                  Save
                 </Button>
-              </div>
 
+              </div>
             </div>
           </Dialog>
         </Card>
 
-        {/* ========================================= */}
+        {/* ================================= */}
         {/* SKELETON */}
-        {/* ========================================= */}
+        {/* ================================= */}
 
         <Card className="p-6">
-          <SectionTitle
+          <TestTitle
             title="Skeleton"
-            description="Loading state preview."
+            description="Loading states"
           />
 
           <div className="mt-6 space-y-4">
+
             <Skeleton className="h-8 w-48" />
 
             <Skeleton className="h-4 w-full" />
@@ -344,20 +417,22 @@ function App() {
             <Skeleton className="h-4 w-3/4" />
 
             <Skeleton className="h-32 w-full" />
+
           </div>
         </Card>
 
-        {/* ========================================= */}
+        {/* ================================= */}
         {/* EMPTY STATE */}
-        {/* ========================================= */}
+        {/* ================================= */}
 
         <Card className="p-6">
-          <SectionTitle
+          <TestTitle
             title="Empty State"
-            description="No-data state with icon and action."
+            description="No data state"
           />
 
           <div className="mt-6">
+
             <EmptyState
               icon={<Wallet size={24} />}
               title="No transactions yet"
@@ -374,17 +449,18 @@ function App() {
                 </Button>
               }
             />
+
           </div>
         </Card>
 
-        {/* ========================================= */}
+        {/* ================================= */}
         {/* TOAST */}
-        {/* ========================================= */}
+        {/* ================================= */}
 
         <Card className="p-6">
-          <SectionTitle
+          <TestTitle
             title="Toast"
-            description="Notification variants."
+            description="All notification variants"
           />
 
           <div className="mt-6 flex flex-wrap gap-3">
@@ -403,7 +479,7 @@ function App() {
               variant="danger"
               onClick={() =>
                 toast.error(
-                  "Something went wrong"
+                  "Transaction failed"
                 )
               }
             >
@@ -414,7 +490,7 @@ function App() {
               variant="secondary"
               onClick={() =>
                 toast.info(
-                  "Your Germany Trip goal is 72% complete"
+                  "Your goal is 72% complete"
                 )
               }
             >
@@ -425,7 +501,7 @@ function App() {
               variant="outline"
               onClick={() =>
                 toast.warning(
-                  "Your food budget is almost exceeded"
+                  "Budget is almost exceeded"
                 )
               }
             >
@@ -435,17 +511,18 @@ function App() {
           </div>
         </Card>
 
-        {/* ========================================= */}
+        {/* ================================= */}
         {/* TABLE */}
-        {/* ========================================= */}
+        {/* ================================= */}
 
         <Card className="p-6">
-          <SectionTitle
+          <TestTitle
             title="Table"
-            description="Transaction table composition test."
+            description="Transactions table"
           />
 
           <div className="mt-6">
+
             <Table>
 
               <Table.Header>
@@ -479,7 +556,9 @@ function App() {
                 <Table.Row>
 
                   <Table.Cell>
+
                     <div className="flex items-center gap-3">
+
                       <div className="flex h-9 w-9 items-center justify-center rounded-full bg-success/10 text-success">
                         <CircleDollarSign size={18} />
                       </div>
@@ -493,7 +572,9 @@ function App() {
                           Aug 01, 2026
                         </p>
                       </div>
+
                     </div>
+
                   </Table.Cell>
 
                   <Table.Cell>
@@ -519,7 +600,9 @@ function App() {
                 <Table.Row>
 
                   <Table.Cell>
+
                     <div className="flex items-center gap-3">
+
                       <div className="flex h-9 w-9 items-center justify-center rounded-full bg-danger/10 text-danger">
                         <CreditCard size={18} />
                       </div>
@@ -533,7 +616,9 @@ function App() {
                           Aug 02, 2026
                         </p>
                       </div>
+
                     </div>
+
                   </Table.Cell>
 
                   <Table.Cell>
@@ -559,59 +644,34 @@ function App() {
               </Table.Body>
 
             </Table>
+
           </div>
         </Card>
 
-        {/* ========================================= */}
-        {/* CARD */}
-        {/* ========================================= */}
+        {/* ================================= */}
+        {/* FINAL STATUS */}
+        {/* ================================= */}
 
-        <Card className="p-6">
-          <SectionTitle
-            title="Card"
-            description="Card composition and nested components."
-          />
+        <Card className="border-success/30 bg-success/5 p-6">
 
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
+          <div className="flex items-center gap-3">
 
-            <Card className="p-5">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-success/10 text-success">
+              <Check />
+            </div>
+
+            <div>
+              <h2 className="font-semibold">
+                UI System Test Lab
+              </h2>
+
               <p className="text-sm text-muted-foreground">
-                Total Balance
+                All components are ready for Layout phase.
               </p>
-
-              <p className="mt-2 text-2xl font-bold">
-                125,450 EGP
-              </p>
-
-              <Badge
-                variant="success"
-                className="mt-3"
-              >
-                +12.5%
-              </Badge>
-            </Card>
-
-            <Card className="p-5">
-              <p className="text-sm text-muted-foreground">
-                Monthly Income
-              </p>
-
-              <p className="mt-2 text-2xl font-bold text-success">
-                +47,750 EGP
-              </p>
-            </Card>
-
-            <Card className="p-5">
-              <p className="text-sm text-muted-foreground">
-                Monthly Expenses
-              </p>
-
-              <p className="mt-2 text-2xl font-bold text-danger">
-                -18,250 EGP
-              </p>
-            </Card>
+            </div>
 
           </div>
+
         </Card>
 
       </div>
@@ -619,7 +679,7 @@ function App() {
   );
 }
 
-function SectionTitle({
+function TestTitle({
   title,
   description,
 }: {
@@ -639,7 +699,7 @@ function SectionTitle({
   );
 }
 
-function ProgressExample({
+function ProgressTest({
   label,
   value,
 }: {
@@ -648,7 +708,7 @@ function ProgressExample({
 }) {
   return (
     <div className="space-y-2">
-      <div className="flex items-center justify-between">
+      <div className="flex justify-between">
         <span className="text-sm font-medium">
           {label}
         </span>
