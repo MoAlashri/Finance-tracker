@@ -1,11 +1,129 @@
 {
-  "users": [],
-  "accounts": [],
-  "transactions": [],
-  "categories": [],
-  "bills": [],
-  "installments": [],
-  "goals": [],
-  "budgets": [],
-  "notifications": []
+  "accounts": [
+    {
+      "id": "acc-1",
+      "name": "Main Bank",
+      "type": "bank",
+      "balance": 24500,
+      "currency": "EGP"
+    },
+    {
+      "id": "acc-2",
+      "name": "Cash Wallet",
+      "type": "cash",
+      "balance": 3200,
+      "currency": "EGP"
+    },
+    {
+      "id": "acc-3",
+      "name": "Credit Card",
+      "type": "credit",
+      "balance": -4500,
+      "currency": "EGP"
+    }
+  ],
+  "transactions": [
+    {
+      "id": "txn-1",
+      "accountId": "acc-1",
+      "type": "income",
+      "category": "Salary",
+      "description": "Monthly Salary",
+      "amount": 18000,
+      "date": "2026-08-01"
+    },
+    {
+      "id": "txn-2",
+      "accountId": "acc-1",
+      "type": "expense",
+      "category": "Food",
+      "description": "Restaurant",
+      "amount": 450,
+      "date": "2026-08-03"
+    },
+    {
+      "id": "txn-3",
+      "accountId": "acc-2",
+      "type": "expense",
+      "category": "Transport",
+      "description": "Uber",
+      "amount": 180,
+      "date": "2026-08-05"
+    },
+    {
+      "id": "txn-4",
+      "accountId": "acc-1",
+      "type": "expense",
+      "category": "Shopping",
+      "description": "New Clothes",
+      "amount": 1200,
+      "date": "2026-08-07"
+    },
+    {
+      "id": "txn-5",
+      "accountId": "acc-1",
+      "type": "income",
+      "category": "Freelance",
+      "description": "Website Project",
+      "amount": 3500,
+      "date": "2026-08-10"
+    },
+    {
+      "id": "txn-6",
+      "accountId": "acc-2",
+      "type": "expense",
+      "category": "Entertainment",
+      "description": "Cinema",
+      "amount": 300,
+      "date": "2026-08-12"
+    }
+  ],
+  "budgets": [
+    { "id": "budget-1", "category": "Food", "limit": 3000, "spent": 1850 },
+    { "id": "budget-2", "category": "Transport", "limit": 1500, "spent": 920 },
+    { "id": "budget-3", "category": "Shopping", "limit": 2500, "spent": 1200 },
+    { "id": "budget-4", "category": "Entertainment", "limit": 1000, "spent": 650 }
+  ],
+  "goals": [
+    {
+      "id": "goal-1",
+      "name": "New Laptop",
+      "target": 50000,
+      "current": 32000,
+      "deadline": "2026-12-01"
+    },
+    {
+      "id": "goal-2",
+      "name": "Emergency Fund",
+      "target": 100000,
+      "current": 45000,
+      "deadline": "2027-06-01"
+    }
+  ],
+  "bills": [
+    {
+      "id": "bill-1",
+      "name": "Internet",
+      "amount": 650,
+      "dueDate": "2026-08-25",
+      "isPaid": false,
+      "category": "Utilities"
+    },
+    {
+      "id": "bill-2",
+      "name": "Netflix",
+      "amount": 250,
+      "dueDate": "2026-08-27",
+      "isPaid": false,
+      "category": "Entertainment"
+    },
+    {
+      "id": "bill-3",
+      "name": "Electricity",
+      "amount": 900,
+      "dueDate": "2026-08-28",
+      "isPaid": true,
+      "category": "Utilities"
+    }
+  ]
 }

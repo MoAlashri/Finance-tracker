@@ -1,6 +1,6 @@
 import type { HTMLAttributes } from "react";
 
-type BadgeVariant = 'default' | 'success' | 'warning' | 'danger' ;
+export type BadgeVariant = 'default' | 'success' | 'warning' | 'danger' ;
 
 interface BadgeProps extends HTMLAttributes<HTMLDivElement>  {
   variant?: BadgeVariant;
@@ -8,9 +8,9 @@ interface BadgeProps extends HTMLAttributes<HTMLDivElement>  {
 
 const variantStyles: Record<BadgeVariant, string> = {
   default : "bg-muted text-muted-foreground",
-  success : "bg-success/10 text-sucess",
+  success : "bg-success/10 text-success",
   warning : "bg-warning/10 text-warning",
-  danger : "bg-danger/10 text-error",
+  danger : "bg-danger/10 text-danger",
 }
 
 function Badge({variant = "default", className="", children, ...props}: BadgeProps) {

@@ -1,0 +1,58 @@
+import type { Transaction } from "../types/finance";
+
+export const transactions: Transaction[] = [
+  {
+    id: "txn-1",
+    accountId: "acc-1",
+    type: "income",
+    category: "Salary",
+    description: "Monthly Salary",
+    amount: 18000,
+    date: "2026-08-01",
+  },
+  {
+    id: "txn-2",
+    accountId: "acc-1",
+    type: "expense",
+    category: "Food",
+    description: "Restaurant",
+    amount: 450,
+    date: "2026-08-03",
+  },
+  {
+    id: "txn-3",
+    accountId: "acc-2",
+    type: "expense",
+    category: "Transport",
+    description: "Uber",
+    amount: 180,
+    date: "2026-08-05",
+  },
+  {
+    id: "txn-4",
+    accountId: "acc-1",
+    type: "expense",
+    category: "Shopping",
+    description: "New Clothes",
+    amount: 1200,
+    date: "2026-08-07",
+  },
+  {
+    id: "txn-5",
+    accountId: "acc-1",
+    type: "income",
+    category: "Freelance",
+    description: "Website Project",
+    amount: 3500,
+    date: "2026-08-10",
+  },
+  {
+    id: "txn-6",
+    accountId: "acc-2",
+    type: "expense",
+    category: "Entertainment",
+    description: "Cinema",
+    amount: 300,
+    date: "2026-08-12",
+  },
+];
