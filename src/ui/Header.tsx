@@ -14,12 +14,12 @@ import { toast } from "sonner";
 import {
   useAppDispatch,
   useAppSelector,
-} from "../../store/hooks";
+} from "../store/hooks";
 
-import { setTheme } from "../../store/slices/themeSlice";
+import { setTheme } from "../store/slices/themeSlice";
 
-import Button from "../ui/Button";
-import Input from "../ui/Input";
+import Button from "./Button";
+import Input from "./Input";
 
 const pageTitles: Record<string, string> = {
   "/": "Dashboard",

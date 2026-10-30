@@ -6,7 +6,7 @@ import Budgets from "./pages/Budgets"
 import Goals from "./pages/Goals"
 import Bills from "./pages/Bills"
 import Settings from "./pages/Settings"
-import AppLayout from "./layouts/AppLayout"
+import AppLayout from "./ui/AppLayout"
 import useTheme from "./hooks/useTheme"
 
 export default function App() {
