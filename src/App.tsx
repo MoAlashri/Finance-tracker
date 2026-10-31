@@ -1,7 +1,7 @@
 import {BrowserRouter,Routes, Route} from "react-router"
 import Dashboard from "./pages/Dashboard"
 import Transactions from "./pages/Transactions"
-import Accounts from "./pages/Accounts"
+import Accounts from "./pages/Reports"
 import Budgets from "./pages/Budgets"
 import Goals from "./pages/Goals"
 import Bills from "./pages/Bills"
