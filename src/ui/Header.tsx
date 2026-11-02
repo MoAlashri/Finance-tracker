@@ -16,6 +16,8 @@ import {
   useAppSelector,
 } from "../store/hooks";
 
+import OpenCloseModal from "../hooks/OpenCloseModal"
+
 import { setTheme } from "../store/slices/themeSlice";
 
 import Button from "./Button";
@@ -194,6 +196,8 @@ function Header({ onMenuClick }: HeaderProps) {
         </Button>
 
         {/* USER */}
+
+        <OpenCloseModal />
 
         <button
           type="button"

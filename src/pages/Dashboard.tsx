@@ -1,6 +1,8 @@
+import OpenCloseModal from "../hooks/OpenCloseModal";
+
 function Dashboard() {
   return (
-    <div>Dashboard</div>
+    <OpenCloseModal />
   );
 }
 
